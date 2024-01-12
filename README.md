@@ -1,3 +1,9 @@
+LANDING PAGE BELAJARIN
+![belajarin-alpha vercel app_ (1)](https://github.com/zakyirsyaad/belajarin/assets/123721842/22d1f4c1-86dc-482a-9503-99597a2f8520)
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
