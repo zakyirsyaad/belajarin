@@ -1,8 +1,8 @@
 # CATALYST Team
-Hustler - Andhika Arya Yudhistiro
-Hipster - Amelia Zakiya Sabrina
-Hacker - Zaky Irsyad Rais
-Hacker - Gilang Aryo Pamungkas
+Hustler - Andhika Arya Yudhistiro,
+Hipster - Amelia Zakiya Sabrina,
+Hacker - Zaky Irsyad Rais,
+Hacker - Gilang Aryo Pamungkas.
 
 # Landing Page Belajarin
 ![belajarin-alpha vercel app_ (1)](https://github.com/zakyirsyaad/belajarin/assets/123721842/22d1f4c1-86dc-482a-9503-99597a2f8520)
