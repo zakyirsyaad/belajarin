@@ -1,9 +1,20 @@
-LANDING PAGE BELAJARIN
+# CATALYST Team
+Hustler - Andhika Arya Yudhistiro
+Hipster - Amelia Zakiya Sabrina
+Hacker - Zaky Irsyad Rais
+Hacker - Gilang Aryo Pamungkas
+
+# Landing Page Belajarin
 ![belajarin-alpha vercel app_ (1)](https://github.com/zakyirsyaad/belajarin/assets/123721842/22d1f4c1-86dc-482a-9503-99597a2f8520)
 
+# Login Member Page Belajarin
+![Uploading belajarin-alpha.vercel.app_ (2).png…]()
+
+# Login Community Mentor Page Belajarin
+![belajarin-alpha vercel app_ (2)](https://github.com/zakyirsyaad/belajarin/assets/123721842/88577879-62cc-4f3a-9e2d-ac089c7b61d8)
 
 
-
+------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
