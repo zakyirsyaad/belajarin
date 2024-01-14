@@ -9,6 +9,7 @@ import ClassWeek from '../component/Fragments/ClassWeek';
 import CarouselHome from '../component/Elements/Carousel/CarouselHome';
 import { TypeAnimation } from 'react-type-animation';
 import Navbar from '../component/Fragments/Navbar';
+import ClassProgramming from './Class/ProgrammerTech/ClassProgramming';
 
 
 export default function Home() {
@@ -46,9 +47,6 @@ export default function Home() {
                     marginTop: '100px'
                 }}
             />
-            <Popular />
-            <Recomendation />
-            <ClassWeek />
             <CarouselHome />
             <Footer />
         </div>

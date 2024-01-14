@@ -35,6 +35,7 @@ function Navbar() {
             </nav>
             <Category className={scrolled ? 'scrolledCategory' : ''} />
         </navbar>
+
     );
 }
 

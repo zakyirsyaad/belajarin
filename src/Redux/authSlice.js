@@ -16,7 +16,7 @@ export const initializeAuthState = createAsyncThunk('initializeAuthState', async
 
 export const signUpUser = createAsyncThunk('signupuser', async (body) => {
     try {
-        const res = await fetch('https://459d-2001-448a-404a-335c-5c6-51cf-12d0-71f4.ngrok-free.app/auth/signup', {
+        const res = await fetch('https://belajarin-tau.vercel.app/auth/signup', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export const signUpUser = createAsyncThunk('signupuser', async (body) => {
 
 export const signInUser = createAsyncThunk('signInUser', async (body) => {
     try {
-        const res = await fetch('https://459d-2001-448a-404a-335c-5c6-51cf-12d0-71f4.ngrok-free.app/auth/login', {
+        const res = await fetch('https://belajarin-tau.vercel.app/auth/login', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

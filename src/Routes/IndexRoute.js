@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ResumeWriting from '../page/Class/WritingTranslation/ResumeWriting';
-import Writing from '../page/Class/WritingTranslation/Writing';
 import ProgrammingTech from '../page/Class/ProgrammerTech/ProgrammingTech';
-import DetailClass from '../page/Class/DetailClass';
 import Register from '../component/Auth/Register';
 import Login from '../component/Auth/Login';
 import SignMail from '../page/SignMail';
@@ -14,6 +11,16 @@ import { initializeAuthState } from '../Redux/authSlice';
 import SignMentor from '../page/SignComMentor';
 import MentorComLogin from '../component/Auth/MentorComLogin';
 import MentorComRegister from '../component/Auth/MentorComRegister';
+import Data from '../page/Class/Data/Data';
+import Business from '../page/Class/Bussiness/Business';
+import GraphicDesign from '../page/Class/GraphicDesign/GraphicDesign';
+import DigitalMarketing from '../page/Class/DigitalMarketing/DigitalMarketing';
+import WritingTranslation from '../page/Class/WritingTranslation/WritingTranslation';
+import VideoAnimation from '../page/Class/VideoAnimation/VideoAnimation';
+import MusicAudio from '../page/Class/MusicAudio/MusicAudio';
+import ClassProgramming from '../page/Class/ProgrammerTech/ClassProgramming';
+import MaterialDetail from '../page/MaterialDetai';
+import ErrorPage from '../page/ErrorPage';
 
 function IndexRoute() {
     const dispatch = useDispatch();
@@ -34,6 +41,10 @@ function IndexRoute() {
                 path='/'
                 element={isLoggedIn ? <Home /> : <LandingPages />}
             />
+
+            <Route
+                path='*'
+                element={<ErrorPage />} />
 
             <Route path='SignWithMail' element={<SignMail />}>
                 <Route path='RegisterMember'
@@ -56,20 +67,53 @@ function IndexRoute() {
                 />
             </Route>
 
+            {/* CATEGORY */}
+
             <Route
                 path='ProgrammingTech'
                 element={isLoggedIn ? <ProgrammingTech /> : <Navigate to='/SignWithMail/LoginMember' />}
             />
             <Route
-                path='WritingTranslation'
-                element={isLoggedIn ? <Writing /> : <Navigate to='/SignWithMail/LoginMember' />}
+                path="/ProgrammingTech/:submenuItemUid"
+                element={isLoggedIn ? <ClassProgramming /> : <Navigate to='/SignWithMail/LoginMember' />}
             />
             <Route
-                path='WritingTranslation/ResumeWriting'
-                element={isLoggedIn ? <ResumeWriting /> : <Navigate to='/SignWithMail/LoginMember' />}
+                path="/material/:mentor_name/:submenuItemUid"
+                element={isLoggedIn ? <MaterialDetail /> : <Navigate to='/SignWithMail/LoginMember' />}
             />
-            <Route path='WritingTranslation/ResumeWriting/:id' element={<DetailClass />} />
-            <Route path=':id' element={<DetailClass />} />
+
+
+            <Route
+                path='Data'
+                element={isLoggedIn ? <Data /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+            <Route
+                path='Business'
+                element={isLoggedIn ? <Business /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+            <Route
+                path='GraphicDesign'
+                element={isLoggedIn ? <GraphicDesign /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+
+            <Route
+                path='DigitalMarketing'
+                element={isLoggedIn ? <DigitalMarketing /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+
+            <Route
+                path='WritingTranslation'
+                element={isLoggedIn ? <WritingTranslation /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+            <Route
+                path='VideoAnimation'
+                element={isLoggedIn ? <VideoAnimation /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+            <Route
+                path='MusicAudio'
+                element={isLoggedIn ? <MusicAudio /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+
 
         </Routes>
     );

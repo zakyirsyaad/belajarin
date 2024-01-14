@@ -35,7 +35,7 @@ const handleSignIn = async (result) => {
     localStorage.setItem('accessToken', accessToken);
 
     try {
-        const response = await fetch('https://459d-2001-448a-404a-335c-5c6-51cf-12d0-71f4.ngrok-free.app/member/add', {
+        const response = await fetch('https://belajarin-tau.vercel.app/member/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const handleSignIn = async (result) => {
         if (!response.ok) {
             throw new Error('Failed to send user data to the server');
         } else {
-            window.location.href = '/';
+            window.location.reload();
             const responseData = await response.json();
             console.log('Server response:', responseData);
         }

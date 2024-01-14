@@ -413,7 +413,7 @@ const categories = [
     {
         key: 'Data',
         label: (
-            <NavLink to='#' id='label'>
+            <NavLink to='/Data' id='label'>
                 Data
             </NavLink>
         ),
@@ -513,7 +513,7 @@ const categories = [
     {
         key: 'Bussiness',
         label: (
-            <NavLink to='#' id='label'>
+            <NavLink to='/Business' id='label'>
                 Bussiness
             </NavLink>
         ),
@@ -694,7 +694,7 @@ const categories = [
     {
         key: 'graphic',
         label: (
-            <NavLink to='#' id='label'>
+            <NavLink to='/GraphicDesign' id='label'>
                 Graphic & Design
             </NavLink>
         ),
@@ -938,7 +938,7 @@ const categories = [
     {
         key: 'marketing',
         label: (
-            <NavLink to='#' id='label'>
+            <NavLink to='/DigitalMarketing' id='label'>
                 Digital Marketing
             </NavLink>
         ),
@@ -1111,7 +1111,7 @@ const categories = [
     {
         key: 'video',
         label: (
-            <NavLink to='#' id='label'>
+            <NavLink to='/VideoAnimation' id='label'>
                 Video & Animation
             </NavLink>
         ),
@@ -1205,7 +1205,7 @@ const categories = [
     {
         key: 'music',
         label: (
-            <NavLink to='#' id='label'>
+            <NavLink to='/MusicAudio' id='label'>
                 Music & Audio
             </NavLink>
         ),
@@ -1326,8 +1326,6 @@ const categories = [
             },
         ],
     },
-
-    // Add more categories with submenus as needed
 ];
 
 const Category = () => (
@@ -1339,6 +1337,7 @@ const Category = () => (
                 </Space>
             </Dropdown>
         ))}
+
     </div>
 );
 
