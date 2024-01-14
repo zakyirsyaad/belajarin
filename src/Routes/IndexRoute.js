@@ -68,8 +68,9 @@ function IndexRoute() {
                 path='WritingTranslation/ResumeWriting'
                 element={isLoggedIn ? <ResumeWriting /> : <Navigate to='/SignWithMail/LoginMember' />}
             />
-            <Route path='WritingTranslation/ResumeWriting/:title' element={<DetailClass />} />
-            <Route path=':title' element={<DetailClass />} />
+            <Route path='WritingTranslation/ResumeWriting/:id' element={<DetailClass />} />
+            <Route path=':id' element={<DetailClass />} />
+
         </Routes>
     );
 }

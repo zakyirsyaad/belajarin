@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 import { StarFilled } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const { Meta } = Card;
 
 const CardClass = () => {
@@ -19,7 +19,7 @@ const CardClass = () => {
     return (
         <div className='popular-card'>
             {data.map((item) => (
-                <NavLink to={`${item.id}`} id='card-link'>
+                <Link to={`${item.id}`} id='card-link'>
                     <Card
                         key={item.id}  // Add a unique key for each Card
                         style={{
@@ -42,7 +42,7 @@ const CardClass = () => {
                         </div>
                         <p className='class-harga'>${item.price}</p>
                     </Card>
-                </NavLink>
+                </Link>
 
             ))}
         </div>
