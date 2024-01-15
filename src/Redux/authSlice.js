@@ -7,8 +7,10 @@ export const initializeAuthState = createAsyncThunk('initializeAuthState', async
         const msg = localStorage.getItem('msg') || "";
         const user = JSON.parse(localStorage.getItem('user')) || "";
         const accessToken = localStorage.getItem('accessToken') || "";
+        const photoURL = localStorage.getItem('Foto') || "";
 
-        return { msg, user, accessToken };
+
+        return { msg, user, accessToken, photoURL };
     } catch (error) {
         throw new Error("Error initializing auth state: " + error.message);
     }
@@ -54,7 +56,8 @@ export const signInUser = createAsyncThunk('signInUser', async (body) => {
     } catch (error) {
         throw new Error("Network error: " + error.message);
     }
-});
+}); const accessToken = localStorage.getItem('accessToken') || "";
+
 
 export const logoutUser = createAsyncThunk('logoutUser', async () => {
     try {
@@ -78,7 +81,7 @@ export const logoutUser = createAsyncThunk('logoutUser', async () => {
 });
 export const signUpMentor = createAsyncThunk('signUpMentor', async (formData) => {
     try {
-        const response = await axios.post('https://459d-2001-448a-404a-335c-5c6-51cf-12d0-71f4.ngrok-free.app/addMentor', formData);
+        const response = await axios.post('https://belajarin-tau.vercel.app/addMentor', formData);
         return response.data;
     } catch (error) {
         throw new Error("Error registering mentor: " + error.message);
@@ -90,7 +93,7 @@ export const uploadFile = createAsyncThunk('uploadFile', async (file) => {
         const formData = new FormData();
         formData.append('file', file);
 
-        const response = await axios.post('https://459d-2001-448a-404a-335c-5c6-51cf-12d0-71f4.ngrok-free.app/uploads', formData, {
+        const response = await axios.post('https://belajarin-tau.vercel.app/uploads', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -111,6 +114,7 @@ const authSlice = createSlice({
         loading: false,
         error: "",
         status: 'idle',
+        photoURL: ""
     },
     reducers: {
         addUser: (state, action) => {
@@ -151,6 +155,7 @@ const authSlice = createSlice({
             .addCase(initializeAuthState.fulfilled, (state, { payload }) => {
                 state.msg = payload.msg;
                 state.user = payload.user;
+                state.photoURL = payload.photoURL;
                 state.accessToken = payload.accessToken;
             })
             .addCase(logoutUser.pending, (state) => {
@@ -173,17 +178,20 @@ const authSlice = createSlice({
             })
             .addCase(signInUser.fulfilled, (state, { payload }) => {
                 state.loading = false;
-                const { error, msg, accessToken, user } = payload;
+                const { error, msg, accessToken, user, photoURL } = payload;
                 if (error) {
                     state.error = error;
                 } else {
                     state.msg = msg;
                     state.accessToken = accessToken;
                     state.user = user;
+                    state.photoURL = photoURL;
+
 
                     localStorage.setItem('msg', msg);
                     localStorage.setItem('accessToken', accessToken);
                     localStorage.setItem('user', JSON.stringify(user));
+                    localStorage.setItem('Foto', JSON.stringify(photoURL));
                     toast.success('Successfully toasted!')
                     return window.location.pathname = '/'
                 }

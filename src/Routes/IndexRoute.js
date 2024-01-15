@@ -21,6 +21,7 @@ import MusicAudio from '../page/Class/MusicAudio/MusicAudio';
 import ClassProgramming from '../page/Class/ProgrammerTech/ClassProgramming';
 import MaterialDetail from '../page/MaterialDetai';
 import ErrorPage from '../page/ErrorPage';
+import OrderSummary from '../page/OrderSummary';
 
 function IndexRoute() {
     const dispatch = useDispatch();
@@ -80,6 +81,10 @@ function IndexRoute() {
             <Route
                 path="/material/:mentor_name/:submenuItemUid"
                 element={isLoggedIn ? <MaterialDetail /> : <Navigate to='/SignWithMail/LoginMember' />}
+            />
+            <Route
+                path="OrderSummary"
+                element={isLoggedIn ? <OrderSummary /> : <Navigate to='/SignWithMail/LoginMember' />}
             />
 
 

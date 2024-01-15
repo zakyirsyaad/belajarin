@@ -10,4 +10,4 @@ export default function ErrorPage() {
             <NavLink to='/'><ButtonStyled>Back to Home</ButtonStyled></NavLink>
         </div>
     )
-}
+}   

@@ -46,7 +46,6 @@ const AppointmentBooking = (className) => {
 
     return (
         <div>
-            <h1>Appointment Booking</h1>
             <div>
                 <DatePicker
                     selected={selectedDate}
@@ -72,9 +71,6 @@ const AppointmentBooking = (className) => {
                         </Select.Option>
                     ))}
                 </Select>
-            </div>
-            <div>
-                <button onClick={handleBooking}>Book Appointment</button>
             </div>
         </div>
     );
