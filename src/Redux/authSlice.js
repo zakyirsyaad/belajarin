@@ -8,9 +8,11 @@ export const initializeAuthState = createAsyncThunk('initializeAuthState', async
         const user = JSON.parse(localStorage.getItem('user')) || "";
         const accessToken = localStorage.getItem('accessToken') || "";
         const photoURL = localStorage.getItem('Foto') || "";
+        const uid = localStorage.getItem('uid') || "";
 
 
-        return { msg, user, accessToken, photoURL };
+
+        return { msg, user, accessToken, photoURL, uid };
     } catch (error) {
         throw new Error("Error initializing auth state: " + error.message);
     }
@@ -88,6 +90,27 @@ export const signUpMentor = createAsyncThunk('signUpMentor', async (formData) =>
     }
 });
 
+export const signInMentor = createAsyncThunk('signInMentor', async (body) => {
+    try {
+        const res = await fetch('https://belajarin-tau.vercel.app/dashboard/login/mentor', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+            return data;
+        } else {
+            throw new Error(data.error);
+        }
+    } catch (error) {
+        throw new Error("Network error: " + error.message);
+    }
+});
+
 export const uploadFile = createAsyncThunk('uploadFile', async (file) => {
     try {
         const formData = new FormData();
@@ -114,7 +137,8 @@ const authSlice = createSlice({
         loading: false,
         error: "",
         status: 'idle',
-        photoURL: ""
+        photoURL: "",
+        uid: ""
     },
     reducers: {
         addUser: (state, action) => {
@@ -134,6 +158,39 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(signInMentor.pending, (state) => {
+                state.loading = true;
+                state.error = toast.loading("Pending");
+            })
+            .addCase(signInMentor.fulfilled, (state, { payload }) => {
+                state.loading = false;
+                const { error, msg, accessToken, user, photoURL, uid } = payload;
+                if (error) {
+                    state.error = error;
+                } else {
+                    state.msg = msg;
+                    state.accessToken = accessToken;
+                    state.user = user;
+                    state.photoURL = photoURL;
+                    state.uid = uid;
+
+
+                    localStorage.setItem('msg', msg);
+                    localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('user', JSON.stringify(user));
+                    localStorage.setItem('Foto', JSON.stringify(photoURL));
+                    localStorage.setItem('uid', JSON.stringify(uid));
+
+                    toast.success('Successfully toasted!')
+                    return window.location.pathname = `/HomeMentor/${user}/${uid}`
+                }
+            })
+            .addCase(signInMentor.rejected, (state, action) => {
+                state.loading = false;
+                state.error = "Request rejected: " + action.error.message;
+                console.error(action.error);
+                toast.error("Rejected")
+            })
             .addCase(signUpMentor.fulfilled, (state, { payload: { error, msg } }) => {
                 state.loading = false;
                 if (error) {

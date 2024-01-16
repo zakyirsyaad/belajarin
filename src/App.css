@@ -38,6 +38,14 @@
   background-size: cover;
 }
 
+.dashboard-mentor {
+  background-image: url(./Assets/belajarin2\ -20.png);
+  background-position: right;
+  background-size: cover;
+  height: 100vh;
+  padding: 0px 250px;
+}
+
 
 /* Navbar */
 navbar {
@@ -925,4 +933,103 @@ form select {
   padding: 10px;
   font-size: 16px;
   /* Add any other styles you need */
+}
+
+.mentor-menu {
+  color: #FFF;
+  font-size: 30px;
+  transition: .3s;
+
+
+  &:hover {
+    rotate: 90deg;
+    transform: scale(1.2);
+
+  }
+}
+
+.mentor-nav img {
+  width: 200px;
+  margin-left: 10px;
+}
+
+.mentor-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0px;
+  margin-bottom: 100px;
+}
+
+.display-name-mentor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text-name-mentor {
+  margin-left: 25px;
+}
+
+.text-community {
+  font-size: 25px;
+  color: #ccc;
+}
+
+.earn-main {
+  margin-top: 50px;
+  background-color: #fff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 400px;
+}
+
+.text-earn {
+  margin-left: 20px;
+}
+
+.label-total {
+  font-size: 17px;
+  font-weight: 600;
+  color: #929292;
+}
+
+.total-earn {
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.chart-earn {
+  width: 600px;
+  background-color: #FFF;
+  padding: 25px;
+  border-radius: 25px;
+}
+
+.chart-earn p {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+
+.display-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header-class {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.header-class p {
+  font-size: 30px;
+  color: #FFF;
+  font-weight: 700;
 }

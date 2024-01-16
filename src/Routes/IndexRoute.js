@@ -22,6 +22,9 @@ import ClassProgramming from '../page/Class/ProgrammerTech/ClassProgramming';
 import MaterialDetail from '../page/MaterialDetai';
 import ErrorPage from '../page/ErrorPage';
 import OrderSummary from '../page/OrderSummary';
+import IndexMentor from '../page/Mentor/IndexMentor';
+import Dashboard from '../page/Mentor/Dashboard';
+import MentorClass from '../page/Mentor/MentorClass';
 
 function IndexRoute() {
     const dispatch = useDispatch();
@@ -118,6 +121,21 @@ function IndexRoute() {
                 path='MusicAudio'
                 element={isLoggedIn ? <MusicAudio /> : <Navigate to='/SignWithMail/LoginMember' />}
             />
+
+            {/* MENTOR */}
+            <Route
+                path='HomeMentor/:user/:uid'
+                element={<IndexMentor />}>
+
+                <Route
+                    index
+                    element={<Dashboard />} />
+
+                <Route
+                    path='addMateri'
+                    element={<MentorClass />} />
+            </Route>
+
 
 
         </Routes>

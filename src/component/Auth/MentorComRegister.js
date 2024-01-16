@@ -87,13 +87,13 @@ export default function MentorComRegister() {
         setPage(page - 1);
     };
 
-    const beforeUpload = (file) => {
-        const isPDF = file.type === 'application/pdf';
-        if (!isPDF) {
-            message.error('You can only upload PDF files!');
-        }
-        return isPDF;
-    };
+    // const beforeUpload = (file) => {
+    //     const isPDF = file.type === 'application/pdf';
+    //     if (!isPDF) {
+    //         message.error('You can only upload PDF files!');
+    //     }
+    //     return isPDF;
+    // };
 
     const [file1, setFile1] = useState(null);
     const [file2, setFile2] = useState(null);

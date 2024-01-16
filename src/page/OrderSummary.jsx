@@ -11,17 +11,18 @@ export default function OrderSummary() {
 
     const title = material?.materiData?.title || 'Loading...';
     const price = material?.materiData?.price || 'Loading...';
+    const mentor_id = material?.materiData?.price || 'Loading...';
 
     const handleConfirmOrder = async () => {
         try {
             // Lakukan operasi penyimpanan ke database di sini
             const response = await axios.post('https://belajarin-tau.vercel.app/pay', {
-                title,
+                material,
                 selectedDate,
                 selectedTime,
-                price
             });
             const responseData = response.data;
+            console.log(response)
             const token = JSON.parse(responseData.dataPayment.response).token;
 
             // Redirect ke halaman pembayaran Midtrans

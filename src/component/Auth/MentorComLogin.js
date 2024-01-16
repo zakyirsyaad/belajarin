@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ButtonStyled from '../Elements/Button/Button';
 import { useDispatch } from 'react-redux';
-import { signInUser } from '../../Redux/authSlice';
+import { signInMentor } from '../../Redux/authSlice';
 
 export default function MentorComLogin() {
     const [email, setEmail] = useState("")
@@ -11,7 +11,7 @@ export default function MentorComLogin() {
     const loginHandle = async () => {
         try {
             console.log(email, password);
-            await dispatch(signInUser({ email, password }));
+            await dispatch(signInMentor({ email, password }));
             setEmail("");
             setPassword("");
         } catch (error) {
