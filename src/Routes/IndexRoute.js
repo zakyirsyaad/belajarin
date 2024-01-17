@@ -67,7 +67,7 @@ function IndexRoute() {
                 />
                 <Route
                     path='LogincommunityMentor'
-                    element={isLoggedIn ? <Navigate to='/' /> : <MentorComLogin />}
+                    element={isLoggedIn ? <Navigate to='/HomeMentor/:user/:uid' /> : <MentorComLogin />}
                 />
             </Route>
 

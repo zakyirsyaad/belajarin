@@ -3,13 +3,9 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../Redux/authSlice';
 import Footer from '../component/Fragments/Footer';
 import { useSelector } from 'react-redux';
-import Popular from '../component/Fragments/Popular';
-import Recomendation from '../component/Fragments/Recomendation';
-import ClassWeek from '../component/Fragments/ClassWeek';
 import CarouselHome from '../component/Elements/Carousel/CarouselHome';
 import { TypeAnimation } from 'react-type-animation';
 import Navbar from '../component/Fragments/Navbar';
-import ClassProgramming from './Class/ProgrammerTech/ClassProgramming';
 
 
 export default function Home() {

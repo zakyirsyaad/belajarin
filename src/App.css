@@ -216,34 +216,6 @@ navbar p:hover {
   color: #466EFC;
 }
 
-.popular,
-.recommendation,
-.classweek {
-  padding: 0px 250px;
-}
-
-
-.popular {
-  margin-top: 50px;
-}
-
-.popular-head {
-  font-size: 25px;
-  color: white;
-}
-
-.popular-head span {
-  text-decoration: underline;
-  font-weight: 700;
-}
-
-.popular-card {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 10px;
-  padding: 100px 250px;
-}
-
 .class-card {
   transition: .3s;
 
@@ -1032,4 +1004,34 @@ form select {
   font-size: 30px;
   color: #FFF;
   font-weight: 700;
+}
+
+.card-home {
+  margin: 150px 250px;
+  background-color: transparent;
+  border: transparent;
+}
+
+.header-card-home {
+  color: #FFF;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.link-card-home {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link-card-home img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 14px;
 }
