@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ButtonStyled from '../Elements/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpMentor, uploadFile } from '../../Redux/authSlice';
-import { message, Upload } from 'antd';
 
 export default function MentorComRegister() {
     const [nama, setNama] = useState("")
@@ -10,10 +9,12 @@ export default function MentorComRegister() {
     const [residenceAddress, setResidenceAddress] = useState("")
     const [educationalBackground, setEducationalBackground] = useState("")
     const [communityName, setCommunityName] = useState("")
-    const [communityAccountSign, setCommunityAccountsign] = useState("")
     const [bankAccountName, setBankAccountName] = useState("")
     const [bankAccountNumber, setBankAccountNumber] = useState("")
     const [bank, setBank] = useState("")
+    const [cv, setCv] = useState([]);
+    const [portfolio, setPortfolio] = useState([]);
+    const [keanggotaan, setKeanggotaan] = useState([]);
 
     const dispatch = useDispatch()
     const registerHandle = () => {
@@ -24,34 +25,19 @@ export default function MentorComRegister() {
             residenceAddress, // Tambahkan data formulir lainnya
             educationalBackground,
             communityName,
-            communityAccountSign,
             bankAccountName,
             bankAccountNumber,
             bank,
-
+            cv,
+            portfolio,
+            keanggotaan
         };
 
         // Kirim data registrasi pengguna
         dispatch(signUpMentor(formData))
             .then(() => {
                 // Jika registrasi berhasil, kirim file
-                if (file1 && file2) {
-                    dispatch(uploadFile(file1))
-                        .then(() => {
-                            console.log('File 1 berhasil di-upload!');
-                        })
-                        .catch((err) => {
-                            console.error('Error saat upload file 1:', err.message);
-                        });
-
-                    dispatch(uploadFile(file2))
-                        .then(() => {
-                            console.log('File 2 berhasil di-upload!');
-                        })
-                        .catch((err) => {
-                            console.error('Error saat upload file 2:', err.message);
-                        });
-                }
+                console.log('berhasil')
             })
             .catch((err) => {
                 // Handle kesalahan registrasi
@@ -64,17 +50,15 @@ export default function MentorComRegister() {
         setBank("")
         setBankAccountName("")
         setBankAccountNumber("")
-        setCommunityAccountsign("")
         setCommunityName("")
         setEducationalBackground("")
-        setFile1("")
-        setFile2("")
         setResidenceAddress("")
         setPage(page - 1)
 
         // Reset file setelah submit
-        setFile1(null);
-        setFile2(null);
+        setCv([]);
+        setPortfolio([]);
+        setKeanggotaan([]);
     };
 
 
@@ -95,22 +79,24 @@ export default function MentorComRegister() {
     //     return isPDF;
     // };
 
-    const [file1, setFile1] = useState(null);
-    const [file2, setFile2] = useState(null);
+
     const { loading, error } = useSelector((state) => state.auth);
 
     const handleFileChange1 = (e) => {
-        setFile1(e.target.files[0]);
+        setCv(e.target.files[0]);
     };
 
     const handleFileChange2 = (e) => {
-        setFile2(e.target.files[0]);
+        setPortfolio(e.target.files[0]);
+    };
+    const handleFileChange3 = (e) => {
+        setKeanggotaan(e.target.files[0]);
     };
 
 
     return (
         <>
-            <form onSubmit={(e) => { e.preventDefault() }} encType="multipart/form-data">
+            <form onSubmit={(e) => { e.preventDefault() }}>
                 <h5>Register Account</h5>
                 {
                     page === 0 && (
@@ -147,12 +133,8 @@ export default function MentorComRegister() {
                                 value={communityName}
                                 onChange={(e) => setCommunityName(e.target.value)}
                             />
-                            <input
-                                type="text"
-                                value={communityAccountSign}
-                                onChange={(e) => setCommunityAccountsign(e.target.value)}
-                                placeholder='Community Account Sign'
-                            />
+                            <label>Bukti Keanggotaan</label>
+                            <input type="file" onChange={handleFileChange3} />
                             <ButtonStyled type="button" onClick={nextPage}>
                                 Next Page
                             </ButtonStyled>

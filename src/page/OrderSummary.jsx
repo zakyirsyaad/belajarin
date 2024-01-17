@@ -6,18 +6,25 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 export default function OrderSummary() {
-    const { state } = useLocation();
-    const { material, selectedDate, selectedTime } = state || {};
+    const location = useLocation();
+    const orderData = location.state || {}; // Menggunakan objek kosong jika location.state tidak ada
 
-    const title = material?.materiData?.title || 'Loading...';
-    const price = material?.materiData?.price || 'Loading...';
-    const mentor_id = material?.materiData?.price || 'Loading...';
+    const {
+        title,
+        price,
+        mentorNama,
+        mentorPhotoUrl,
+        mentorEmail,
+        selectedDate,
+        selectedTime,
+    } = orderData;
 
     const handleConfirmOrder = async () => {
         try {
             // Lakukan operasi penyimpanan ke database di sini
             const response = await axios.post('https://belajarin-tau.vercel.app/pay', {
-                material,
+                title,
+                price,
                 selectedDate,
                 selectedTime,
             });
@@ -39,9 +46,10 @@ export default function OrderSummary() {
         <div className=''>
             <Navbar />
             <div className='order-summary-content'>
-                <h1>Order Summary</h1>
-                <p>Material: {title}</p>
-                <p>Harga: {price}</p>
+                <p>Title: {title}</p>
+                <p>Price: {price}</p>
+                <p>Mentor: {mentorNama}</p>
+                <p>Mentor Email: {mentorEmail}</p>
                 <p>Date: {selectedDate?.toLocaleDateString()}</p>
                 <p>Time: {selectedTime ? `${selectedTime.startTime} - ${selectedTime.endTime}` : 'Not selected'}</p>
                 <button onClick={handleConfirmOrder}>Confirm Order</button>

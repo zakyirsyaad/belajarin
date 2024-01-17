@@ -81,7 +81,11 @@ export const logoutUser = createAsyncThunk('logoutUser', async () => {
 });
 export const signUpMentor = createAsyncThunk('signUpMentor', async (formData) => {
     try {
-        const response = await axios.post('https://belajarin-tau.vercel.app/addMentor', formData);
+        const response = await axios.post('https://dfc6-180-245-132-50.ngrok-free.app/addMentor', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
         return response.data;
     } catch (error) {
         throw new Error("Error registering mentor: " + error.message);
@@ -104,23 +108,6 @@ export const signInMentor = createAsyncThunk('signInMentor', async (body) => {
         } else {
             throw new Error(data.error);
         }
-    } catch (error) {
-        throw new Error("Network error: " + error.message);
-    }
-});
-
-export const uploadFile = createAsyncThunk('uploadFile', async (file) => {
-    try {
-        const formData = new FormData();
-        formData.append('file', file);
-
-        const response = await axios.post('https://belajarin-tau.vercel.app/uploads', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-
-        return response.data;
     } catch (error) {
         throw new Error("Network error: " + error.message);
     }
@@ -240,6 +227,9 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = "Mentor registration rejected: " + action.error.message;
                 console.error(action.error);
+                toast.error('Mentor registration Rejected', {
+                    duration: 6000
+                })
             })
 
             .addCase(initializeAuthState.fulfilled, (state, { payload }) => {
@@ -313,20 +303,6 @@ const authSlice = createSlice({
                 state.error = "Request rejected";
                 toast.error("Rejected")
             })
-            .addCase(uploadFile.pending, (state) => {
-                state.loading = true;
-                state.error = "";
-            })
-            .addCase(uploadFile.fulfilled, (state, { payload }) => {
-                state.loading = false;
-                // Lakukan sesuatu dengan data upload jika diperlukan
-                console.log("File berhasil di-upload:", payload);
-            })
-            .addCase(uploadFile.rejected, (state, action) => {
-                state.loading = false;
-                state.error = "Upload rejected: " + action.error.message;
-                console.error(action.error);
-            });
     },
 });
 

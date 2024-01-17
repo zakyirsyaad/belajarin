@@ -16,7 +16,7 @@ import { Select } from 'antd';
 
 export default function MaterialDetail() {
     const { submenuItemUid, mentor_name } = useParams();
-    const [material, setMaterial] = useState({});
+    const [data, setData] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -25,7 +25,9 @@ export default function MaterialDetail() {
         const loadMaterialData = async () => {
             try {
                 const response = await axios.get(`https://belajarin-app.vercel.app/material/${mentor_name}/${submenuItemUid}`);
-                setMaterial(response.data); // Access the entire response
+                setData(response.data); // Access the entire response
+                console.log(response.data);
+
                 console.log("verhasil");
             } catch (err) {
                 setError(err.message);
@@ -34,8 +36,6 @@ export default function MaterialDetail() {
 
         loadMaterialData();
     }, [submenuItemUid, mentor_name]);
-
-    const materialTitle = material?.materiData?.title || 'Loading...';
 
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
@@ -67,11 +67,18 @@ export default function MaterialDetail() {
         (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
     const handleBooking = () => {
-        if (selectedDate && selectedTime) {
-            // Menavigasi ke halaman OrderSummary dengan membawa data yang diperlukan
+        if (selectedDate && selectedTime && data && data.material.length > 0 && data.mentorData.length > 0) {
+            const material = data.material[0];
+            const mentor = data.mentorData[0];
+
+            // Navigating to OrderSummary with the required data
             navigate('/OrderSummary', {
                 state: {
-                    material,
+                    title: material.title,
+                    price: material.price,
+                    mentorNama: mentor.nama,
+                    mentorPhotoUrl: mentor.photoURL,
+                    mentorEmail: mentor.email,
                     selectedDate,
                     selectedTime,
                 },
@@ -86,30 +93,33 @@ export default function MaterialDetail() {
             <Navbar />
             <div className='detail-class'>
                 <div className='detail-left'>
-                    <p className='detail-desc'>{materialTitle}</p>
-                    <div className='data-mentor'>
-                        <FotoBadge
-                            src={material.materiData?.image}
-                            alt="Foto Profil"
-                            badgeImg={badge}
-                        />
-                        <div className='detail-mentor'>
-                            <p className='nama-mentor'>
-                                {material.materiData?.mentor_name}  <Avatar style={{ marginLeft: 5 }} src={badge} alt="badge" />
-                                <div className='class-text lokasi'>
-                                    <HomeFilled style={{ paddingRight: 10, fontSize: 20 }} />
-                                    <p className='lokasi-mentor'>Yogyakarta</p>
-                                    <p className='lokasi-mentor'>32 Sessions</p>
+                    {data ? (
+                        <div>
+                            {/* Menampilkan data material */}
+                            {data.material.map((material) => (
+                                <div key={material.materi_id}>
+                                    <h2>{material.title}</h2>
+                                    <img src={material.image} alt={material.title} />
+                                    <p>Category: {material.category}</p>
+                                    <p>Learning Path: {material.learningPath}</p>
+                                    <p>Price: {material.price}</p>
                                 </div>
-                            </p>
-                            <ButtonStyled>Contact Me</ButtonStyled>
+                            ))}
+
+                            {/* Menampilkan data mentor */}
+                            {data.mentorData.map((mentor) => (
+                                <div key={mentor.mentor_id}>
+                                    <h2>Mentor: {mentor.nama}</h2>
+                                    <img src={mentor.photoURL} alt={mentor.displayName} />
+                                    <p>Location: {mentor.location}</p>
+                                    <p>Email: {mentor.email}</p>
+                                    <p>Description: {mentor.desc_mentor}</p>
+                                </div>
+                            ))}
                         </div>
-                    </div>
-                    <p className='desc-mentor'>{material.mentorData?.length > 0 ? material.mentorData[0].desc_mentor : 'Mentor data not available'}</p>
-                    <div className='skill-mentor'>
-                        <p>Cover Letters</p>
-                        <p>Job Description</p>
-                    </div>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
                 </div>
                 <div>
                     <div>
