@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup } from 'firebase/auth';
 import { FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAx_TjUwKVveiyLjlmKuQHayjLMNhyYaMw",
@@ -67,6 +68,9 @@ export const signInWithFacebook = () => {
 export const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
         .then(handleSignIn)
+        .then(() => {
+            toast.success('Sign-in with Google successful');
+        })
         .catch((error) => {
             console.error('Error during Google sign-in:', error);
         });

@@ -118,7 +118,7 @@ export const addMateri = createAsyncThunk('addMateri', async (formData) => {
     const uid = localStorage.getItem('uid') || "";
 
     try {
-        const response = await axios.post(`https://belajarin-tau.vercel.app/${user}/${uid}/addMateri`, formData, {
+        const response = await axios.post(`https://belajarin-tau.vercel.app/HomeMentor/${user}/${uid}/addMateri`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
