@@ -1,3 +1,4 @@
+import React from 'react'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
@@ -7,7 +8,7 @@ import { Card, Spin } from 'antd';
 import { StarFilled } from '@ant-design/icons';
 import Breadcrumbs from '../../../component/Elements/Breadcrumbs';
 
-export default function ClassProgramming() {
+export default function ClassDigitalMarketing() {
     const { submenuItemUid } = useParams();
     const [classData, setClassData] = useState([]);  // Set initial state to an empty array
     const [error, setError] = useState('');
@@ -16,7 +17,7 @@ export default function ClassProgramming() {
     useEffect(() => {
         const loadClassData = async () => {
             try {
-                const response = await axios.get(`https://belajarin-tau.vercel.app/programming/${submenuItemUid}`);
+                const response = await axios.get(`https://belajarin-tau.vercel.app/digital-marketing/${submenuItemUid}`);
                 setClassData(response.data.materi);
                 setLoading(false);
             } catch (err) {
@@ -28,7 +29,6 @@ export default function ClassProgramming() {
     }, [submenuItemUid]);
 
     return (
-
         <div className='writing'>
             <Navbar />
             <Breadcrumbs />
@@ -65,5 +65,5 @@ export default function ClassProgramming() {
             </div>
             <Footer />
         </div>
-    );
+    )
 }

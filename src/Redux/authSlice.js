@@ -260,7 +260,7 @@ const authSlice = createSlice({
             })
             .addCase(signInUser.fulfilled, (state, { payload }) => {
                 state.loading = false;
-                const { error, msg, accessToken, user, photoURL } = payload;
+                const { error, msg, accessToken, user, photoURL, uid } = payload;
                 if (error) {
                     state.error = error;
                 } else {
@@ -268,12 +268,15 @@ const authSlice = createSlice({
                     state.accessToken = accessToken;
                     state.user = user;
                     state.photoURL = photoURL;
+                    state.uid = uid;
+
 
 
                     localStorage.setItem('msg', msg);
                     localStorage.setItem('accessToken', accessToken);
                     localStorage.setItem('user', JSON.stringify(user));
-                    localStorage.setItem('Foto', JSON.stringify(photoURL));
+                    localStorage.setItem('Foto', photoURL);
+                    localStorage.setItem('uid', uid);
                     toast.success('Successfully toasted!')
                     return window.location.pathname = '/'
                 }

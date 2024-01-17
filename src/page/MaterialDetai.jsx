@@ -6,7 +6,7 @@ import Navbar from '../component/Fragments/Navbar';
 import FotoBadge from '../component/Elements/FotoBadge/FotoBadge';
 import badge from '../Assets/GDG-Bevy-ChapterThumbnail 1.png'
 import { Avatar } from 'antd';
-import { HomeFilled } from '@ant-design/icons';
+import { HomeFilled, HomeOutlined } from '@ant-design/icons';
 import ButtonStyled from '../component/Elements/Button/Button';
 import AppointmentBooking from '../component/Elements/AppointmentBooking';
 import Footer from '../component/Fragments/Footer';
@@ -74,8 +74,10 @@ export default function MaterialDetail() {
             // Navigating to OrderSummary with the required data
             navigate('/OrderSummary', {
                 state: {
+                    materi_id: material.materi_id,
                     title: material.title,
                     price: material.price,
+                    image: material.image,
                     mentorNama: mentor.nama,
                     mentorPhotoUrl: mentor.photoURL,
                     mentorEmail: mentor.email,
@@ -95,31 +97,53 @@ export default function MaterialDetail() {
                 <div className='detail-left'>
                     {data ? (
                         <div>
-                            {/* Menampilkan data material */}
                             {data.material.map((material) => (
                                 <div key={material.materi_id}>
-                                    <h2>{material.title}</h2>
-                                    <img src={material.image} alt={material.title} />
-                                    <p>Category: {material.category}</p>
-                                    <p>Learning Path: {material.learningPath}</p>
-                                    <p>Price: {material.price}</p>
+                                    <p className='title-detail-class'>{material.title}</p>
+                                    <p className='detail-class-price'>Rp. {(parseFloat(material.price)).toLocaleString()}</p>
+                                    <img className='detail-class-img' src={material.image} alt={material.title} />
+                                    <p className='detail-class-learningPath'>Learning Path<span>{material.learningPath}</span></p>
                                 </div>
                             ))}
-
-                            {/* Menampilkan data mentor */}
                             {data.mentorData.map((mentor) => (
                                 <div key={mentor.mentor_id}>
-                                    <h2>Mentor: {mentor.nama}</h2>
-                                    <img src={mentor.photoURL} alt={mentor.displayName} />
-                                    <p>Location: {mentor.location}</p>
-                                    <p>Email: {mentor.email}</p>
-                                    <p>Description: {mentor.desc_mentor}</p>
+                                    <div className='detail-class-box-mentor'>
+                                        <Avatar
+                                            size={{
+                                                xs: 24,
+                                                sm: 32,
+                                                md: 40,
+                                                lg: 64,
+                                                xl: 80,
+                                                xxl: 100,
+                                            }}
+                                            style={{ marginRight: 25 }}
+                                            img src={mentor.photoURL} alt={mentor.displayName}
+                                        />
+                                        <div>
+                                            <p className='detail-class-nama'>{mentor.nama}</p>
+                                            <p className='detail-class-location'><span><HomeOutlined /></span>{mentor.location}</p>
+                                        </div>
+                                    </div>
+                                    <p className='detail-class-description'>{mentor.desc_mentor}</p>
                                 </div>
                             ))}
+                            {/* <div>
+                                <h2>{material.title}</h2>
+                                <div>
+                                    <img src={mentor.photoURL} alt={mentor.displayName} />
+                                    <h2>Mentor: {mentor.nama}</h2>
+                                    <p>Location: {mentor.location}</p>
+                                </div>
+                                <p>Learning Path: {material.learningPath}</p>
+                                <h2>Mentor: {mentor.nama}</h2>
+                            </div> */}
                         </div>
+
                     ) : (
                         <p>Loading...</p>
                     )}
+
                 </div>
                 <div>
                     <div>

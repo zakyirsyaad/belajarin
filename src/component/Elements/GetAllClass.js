@@ -43,7 +43,7 @@ const GetAllClass = () => {
                                 <StarFilled />
                                 <p>4.9</p>
                             </div>
-                            <p className='class-harga'>Rp. {materi.price}</p>
+                            <p className='class-harga'>Rp. {(parseFloat(materi.price)).toLocaleString()}</p>
                         </>
                     </Card>
                 </Link>

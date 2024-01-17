@@ -41,7 +41,7 @@ export default function Data() {
                             {item.subMenu.map((submenuItem) => (
                                 <NavLink
                                     key={submenuItem.uid}
-                                    to={`/ProgrammingTech/${submenuItem.uid}`}
+                                    to={`/Data/${submenuItem.uid}`}
                                     className="class-submenu"
                                 >
                                     <p>{submenuItem.title}</p>

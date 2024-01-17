@@ -1,4 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
+import Navbar from '../../../component/Fragments/Navbar';
+import Footer from '../../../component/Fragments/Footer';
+import { Card } from 'antd';
+import { StarFilled } from '@ant-design/icons';
+import Breadcrumbs from '../../../component/Elements/Breadcrumbs';
 
 export default function ClassData() {
     const { submenuItemUid } = useParams();
@@ -18,7 +25,7 @@ export default function ClassData() {
         loadClassData();
     }, [submenuItemUid]);
     return (
-        <div>
+        <div className='writing'>
             <Navbar />
             <Breadcrumbs />
             {error && <p className="text-danger">{error}</p>}
