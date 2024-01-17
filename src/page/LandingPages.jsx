@@ -36,49 +36,49 @@ export default function LandingPages() {
                 </Card.Grid>
 
                 <Card.Grid style={gridStyle}>
-                    <NavLink to='/programming' className='link-card-home'>
+                    <NavLink to='/Data' className='link-card-home'>
                         <img src={imgCard2} alt="" />
                         Data
                     </NavLink>
                 </Card.Grid>
 
                 <Card.Grid style={gridStyle}>
-                    <NavLink to='/programming' className='link-card-home'>
+                    <NavLink to='/Business' className='link-card-home'>
                         <img src={imgCard3} alt="" />
                         Business
                     </NavLink>
                 </Card.Grid>
 
                 <Card.Grid style={gridStyle}>
-                    <NavLink to='/programming' className='link-card-home'>
+                    <NavLink to='/GraphicDesign' className='link-card-home'>
                         <img src={imgCard4} alt="" />
                         Graphic Design
                     </NavLink>
                 </Card.Grid>
 
                 <Card.Grid style={gridStyle}>
-                    <NavLink to='/programming' className='link-card-home'>
+                    <NavLink to='/DigitalMarketing' className='link-card-home'>
                         <img src={imgCard5} alt="" />
                         Digital Marketing
                     </NavLink>
                 </Card.Grid>
 
                 <Card.Grid style={gridStyle}>
-                    <NavLink to='/programming' className='link-card-home'>
+                    <NavLink to='/WritingTranslation' className='link-card-home'>
                         <img src={imgCard6} alt="" />
                         Writing Translation
                     </NavLink>
                 </Card.Grid>
 
                 <Card.Grid style={gridStyle}>
-                    <NavLink to='/programming' className='link-card-home'>
+                    <NavLink to='/VideoAnimation' className='link-card-home'>
                         <img src={imgCard7} alt="" />
                         Video & Animation
                     </NavLink>
                 </Card.Grid>
 
                 <Card.Grid style={gridStyle}>
-                    <NavLink to='/programming' className='link-card-home'>
+                    <NavLink to='/MusicAudio' className='link-card-home'>
                         <img src={imgCard8} alt="" />
                         Music & Audio
                     </NavLink>

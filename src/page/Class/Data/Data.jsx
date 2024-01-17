@@ -27,24 +27,31 @@ export default function Data() {
     return (
         <div className='writing'>
             <Navbar />
-            <HeaderClass>Data   </HeaderClass>
-            {loading && <Spin size="large" fullscreen={true} />}
-            {error && <p className="text-danger">{error}</p>}
-            <NavLink to=''>
-                <Space direction="horzontal" size={16} wrap={true}>
+            <HeaderClass>Data</HeaderClass>
+            <div className='get-list-category'>
+                {loading && <Spin size="large" fullscreen={true} />}
+                {error && <p className="text-danger">{error}</p>}
+                <Space direction="horizontal" size={16} wrap={true}>
                     {data.map((item) => (
                         <Card
                             key={item.id}
-                            title={item.title}
-                            style={{ width: 300, height: 300 }}
+                            title={<p className='get-list-category-title'>{item.title}</p>}
+                            style={{ width: 300, height: 300, margin: 20 }}
                         >
                             {item.subMenu.map((submenuItem) => (
-                                <p key={submenuItem.uid}>{submenuItem.title}</p>
+                                <NavLink
+                                    key={submenuItem.uid}
+                                    to={`/ProgrammingTech/${submenuItem.uid}`}
+                                    className="class-submenu"
+                                >
+                                    <p>{submenuItem.title}</p>
+                                </NavLink>
                             ))}
                         </Card>
                     ))}
                 </Space>
-            </NavLink>
+            </div>
+            <Footer />
             <Footer />
         </div>
     );

@@ -6,7 +6,7 @@ function CarouselTestimoni() {
     const contentStyle = {
         height: '617px',
         color: '#fff',
-        margin: '0px 250px',
+        margin: '0px 150px',
 
     };
     const carouselSettings = {

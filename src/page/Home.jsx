@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import CarouselHome from '../component/Elements/Carousel/CarouselHome';
 import { TypeAnimation } from 'react-type-animation';
 import Navbar from '../component/Fragments/Navbar';
+import GetAllClass from '../component/Elements/GetAllClass';
 
 
 export default function Home() {
@@ -35,14 +36,11 @@ export default function Home() {
                     `How's it going,`,
                     1000,
                 ]}
-                wrapper="span"
                 speed={50}
                 repeat={Infinity}
                 className='log-name'
-                style={{
-                    marginTop: '100px'
-                }}
             />
+            <GetAllClass />
             <CarouselHome />
             <Footer />
         </div>

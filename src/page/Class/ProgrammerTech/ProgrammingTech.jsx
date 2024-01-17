@@ -28,15 +28,15 @@ export default function ProgrammingTech() {
         <div className='writing'>
             <Navbar />
             <HeaderClass>Programming & Tech</HeaderClass>
-            {loading && <Spin size="large" fullscreen={true} />}
-            {error && <p className="text-danger">{error}</p>}
-            <NavLink to='' id='class-link'>
+            <div className='get-list-category'>
+                {loading && <Spin size="large" fullscreen={true} />}
+                {error && <p className="text-danger">{error}</p>}
                 <Space direction="horizontal" size={16} wrap={true}>
                     {data.map((item) => (
                         <Card
                             key={item.id}
-                            title={item.title}
-                            style={{ width: 300, height: 300 }}
+                            title={<p className='get-list-category-title'>{item.title}</p>}
+                            style={{ width: 300, height: 300, margin: 20 }}
                         >
                             {item.subMenu.map((submenuItem) => (
                                 <NavLink
@@ -50,7 +50,7 @@ export default function ProgrammingTech() {
                         </Card>
                     ))}
                 </Space>
-            </NavLink>
+            </div>
             <Footer />
         </div>
     );
