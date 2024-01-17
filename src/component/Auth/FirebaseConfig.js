@@ -34,6 +34,7 @@ const handleSignIn = async (result) => {
     localStorage.setItem('email', email);
     localStorage.setItem('Foto', photoURL);
     localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('uid', uid);
 
     try {
         const response = await fetch('https://belajarin-tau.vercel.app/member/add', {
