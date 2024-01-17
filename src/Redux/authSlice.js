@@ -81,7 +81,7 @@ export const logoutUser = createAsyncThunk('logoutUser', async () => {
 });
 export const signUpMentor = createAsyncThunk('signUpMentor', async (formData) => {
     try {
-        const response = await axios.post('https://dfc6-180-245-132-50.ngrok-free.app/addMentor', formData, {
+        const response = await axios.post('https://belajarin-tau.vercel.app/addMentor', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -118,7 +118,7 @@ export const addMateri = createAsyncThunk('addMateri', async (formData) => {
     const uid = localStorage.getItem('uid') || "";
 
     try {
-        const response = await axios.post(`https://dfc6-180-245-132-50.ngrok-free.app/HomeMentor/${user}/${uid}/addMateri`, formData, {
+        const response = await axios.post(`https://belajarin-tau.vercel.app/${user}/${uid}/addMateri`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
