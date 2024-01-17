@@ -8,7 +8,7 @@ function CarouselHome() {
         height: 'auto',
         color: '#fff',
         lineHeight: '160px',
-        padding: '0px 250px',
+        padding: '0px 150px',
     };
     const carouselSettings = {
         autoplay: true,
