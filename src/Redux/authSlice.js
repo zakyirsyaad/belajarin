@@ -10,8 +10,6 @@ export const initializeAuthState = createAsyncThunk('initializeAuthState', async
         const photoURL = localStorage.getItem('Foto') || "";
         const uid = localStorage.getItem('uid') || "";
 
-
-
         return { msg, user, accessToken, photoURL, uid };
     } catch (error) {
         throw new Error("Error initializing auth state: " + error.message);
@@ -128,6 +126,22 @@ export const uploadFile = createAsyncThunk('uploadFile', async (file) => {
     }
 });
 
+export const addMateri = createAsyncThunk('addMateri', async (formData) => {
+    const user = JSON.parse(localStorage.getItem('user')) || "";
+    const uid = localStorage.getItem('uid') || "";
+
+    try {
+        const response = await axios.post(`https://dfc6-180-245-132-50.ngrok-free.app/HomeMentor/${user}/${uid}/addMateri`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error("Error addig Class: " + error.message);
+    }
+});
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -138,7 +152,7 @@ const authSlice = createSlice({
         error: "",
         status: 'idle',
         photoURL: "",
-        uid: ""
+        uid: "",
     },
     reducers: {
         addUser: (state, action) => {
@@ -158,6 +172,25 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(addMateri.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(addMateri.fulfilled, (state, { payload }) => {
+                state.loading = false;
+                const { error, msg, user, uid } = payload;
+                if (error) {
+                    state.error = error;
+                } else {
+                    state.user = user;
+                    state.uid = uid;
+                    state.msg = msg;
+                    toast.success('Course added successfully');
+                }
+            })
+            .addCase(addMateri.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
             .addCase(signInMentor.pending, (state) => {
                 state.loading = true;
                 state.error = toast.loading("Pending");
@@ -179,7 +212,7 @@ const authSlice = createSlice({
                     localStorage.setItem('accessToken', accessToken);
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('Foto', JSON.stringify(photoURL));
-                    localStorage.setItem('uid', JSON.stringify(uid));
+                    localStorage.setItem('uid', uid);
 
                     toast.success('Successfully toasted!')
                     return window.location.pathname = `/HomeMentor/${user}/${uid}`
@@ -214,6 +247,8 @@ const authSlice = createSlice({
                 state.user = payload.user;
                 state.photoURL = payload.photoURL;
                 state.accessToken = payload.accessToken;
+                state.uid = payload.uid;
+
             })
             .addCase(logoutUser.pending, (state) => {
                 state.loading = true;

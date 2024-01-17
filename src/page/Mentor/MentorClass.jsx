@@ -4,20 +4,13 @@ import ButtonStyled from '../../component/Elements/Button/Button';
 import DataMentorClass from '../../component/Elements/DataMentorClass';
 import categoryData from '../../category.json';
 import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMateri } from '../../Redux/authSlice';
 
 const { Option } = Select;
 
 export default function MentorClass() {
     const [open, setOpen] = useState(false);
-    const [title, setTitle] = useState('');
-    const [learningPath, setLearningPath] = useState('');
-    const [price, setPrice] = useState('');
-    const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectedSubCategory, setSelectedSubCategory] = useState(null);
-    const [selectedSubMenu, setSelectedSubMenu] = useState(null);
-    const [file, setFile] = useState(null);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         // Set data from the local JSON file
@@ -39,77 +32,75 @@ export default function MentorClass() {
         setSelectedSubMenu(value);
     };
 
-    const handleFormSubmit = async () => {
-        try {
-            setLoading(true);
+    const [title, setTitle] = useState('');
+    const [learningPath, setLearningPath] = useState('');
+    const [price, setPrice] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    const [selectedSubMenu, setSelectedSubMenu] = useState(null);
+    const [file, setFile] = useState([]);
 
-            // Mendapatkan data dari localStorage
-            const user = JSON.parse(localStorage.getItem('user'));
-            const uid = JSON.parse(localStorage.getItem('uid'));
+    const uid = localStorage.getItem("uid")
 
-            const formData = new FormData();
-            formData.append('title', title);
-            formData.append('learningPath', learningPath);
-            formData.append('price', price);
-            formData.append('mentor_id', uid);
-            formData.append('mentor_name', user);
-            formData.append('category', selectedCategory);
-            formData.append('subCategory', selectedSubCategory);
-            formData.append('subMenu', selectedSubMenu);
-            if (file) {
-                formData.append('file', file.originFileObj);
-            }
 
-            const response = await fetch(`https://belajarin-tau.vercel.app/HomeMentor/${user}/${uid}/addMateri`, {
-                method: 'POST',
-                body: formData,
+
+    const { loading, error } = useSelector((state) => state.auth);
+
+    const dispatch = useDispatch()
+
+    const addHandle = () => {
+        // Kumpulkan data formulir
+        const formData = {
+            title,
+            learningPath,
+            price, // Tambahkan data formulir lainnya
+            selectedCategory,
+            selectedSubCategory,
+            selectedSubMenu,
+            file,
+            uid
+        };
+
+        // Kirim data registrasi pengguna
+        dispatch(addMateri(formData))
+            .then(() => {
+                setOpen(false); // Close the modal on success
+            })
+            .catch((err) => {
+                toast.error('Error adding course');
+                console.error('Error adding course:', err.message);
             });
 
-            if (response.ok) {
-                console.log('Materi added successfully');
-                // Handle any additional logic after successful submission
-                setOpen(false);
-                toast.success('berhasil');
-            } else {
-                console.error('Failed to add Materi:', response.statusText);
-                toast.error('eror');
-                // Handle error scenario
-            }
-        } catch (error) {
-            console.error('Error submitting Materi:', error);
-        } finally {
-            setLoading(false);
-        }
+        // Reset form fields after submission
+        setTitle('');
+        setLearningPath('');
+        setPrice('');
+        setSelectedCategory(null);
+        setSelectedSubCategory(null);
+        setSelectedSubMenu(null);
+        setFile(null);
     };
 
-    const beforeUpload = (file) => {
-        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-        if (!isJpgOrPng) {
-            message.error('You can only upload JPG/PNG file!');
-        }
-        return isJpgOrPng;
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
     };
 
-    const handleChange = (info) => {
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-            setFile(info.file);
-        } else if (info.file.status === 'error') {
-            console.error(`${info.file.name} file upload failed.`, info.file.response);
-            message.error(`${info.file.name} file upload failed. Please check the console for details.`);
-        }
-    };
+
+
+
 
     return (
         <div>
             <div className='header-class'>
                 <p>Courses</p>
+                {error && <p>Error: {error}</p>}
                 <ButtonStyled onClick={() => setOpen(true)}>+ Course</ButtonStyled>
                 <Modal
                     title='Add Your Class'
                     centered
                     visible={open}
-                    onOk={handleFormSubmit}
+                    onOk={addHandle}
                     onCancel={() => setOpen(false)}
                     width={800}
                 >
@@ -177,12 +168,7 @@ export default function MentorClass() {
                                     </Select>
                                 )}
                             </div>
-                            <Upload
-                                name='file'
-                                showUploadList={false}
-                                beforeUpload={beforeUpload}
-                                onChange={handleChange}
-                            />
+                            <input type="file" onChange={handleFileChange} />
                         </form>
                     </Spin>
                 </Modal>
