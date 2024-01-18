@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Modal, Select, Spin, Upload, message } from 'antd';
+import { Input, Modal, Select, Spin } from 'antd';
 import ButtonStyled from '../../component/Elements/Button/Button';
 import DataMentorClass from '../../component/Elements/DataMentorClass';
 import categoryData from '../../category.json';

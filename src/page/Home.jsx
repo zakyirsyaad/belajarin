@@ -1,6 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { logout } from '../Redux/authSlice';
 import Footer from '../component/Fragments/Footer';
 import { useSelector } from 'react-redux';
 import CarouselHome from '../component/Elements/Carousel/CarouselHome';
