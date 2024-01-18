@@ -178,7 +178,7 @@ const authSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.error.message;
                 toast.error('Course added Rejected');
-
+                window.location.reload();
             })
             .addCase(signInMentor.pending, (state) => {
                 state.loading = true;
