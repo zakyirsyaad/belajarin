@@ -160,7 +160,7 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(addMateri.pending, (state) => {
-                state.status = 'loading';
+                state.status = true;
             })
             .addCase(addMateri.fulfilled, (state, { payload }) => {
                 state.loading = false;
@@ -177,6 +177,8 @@ const authSlice = createSlice({
             .addCase(addMateri.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
+                toast.error('Course added Rejected');
+
             })
             .addCase(signInMentor.pending, (state) => {
                 state.loading = true;
@@ -221,6 +223,13 @@ const authSlice = createSlice({
                         duration: 6000
                     })
                 }
+            })
+            .addCase(signUpMentor.pending, (state, action) => {
+                // Handle rejected mentor registration
+                state.loading = true;
+                toast.loading('Mentor registration Pending', {
+                    duration: 6000
+                })
             })
             .addCase(signUpMentor.rejected, (state, action) => {
                 // Handle rejected mentor registration
