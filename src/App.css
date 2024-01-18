@@ -1176,10 +1176,16 @@ form select {
 
 .tab-active {
   background-color: #fff;
-  padding: 10px 25px;
+  padding: 10px 45px;
   border-radius: 5px;
   color: #000;
   font-weight: 600;
+}
+
+.tab-inactive:hover {
+  border: 1px solid #fff;
+  padding: 10px 45px;
+  border-radius: 5px;
 }
 
 .tabs-data {
@@ -1239,45 +1245,50 @@ form select {
 } */
 
 .data-materi-status {
-  padding: 12px 45px;
+  width: 200px;
+  padding: 5px 0px;
   font-size: 20px;
   font-weight: 600;
-  border-radius: 20px;
+  border-radius: 10px;
   text-transform: capitalize;
   text-align: center;
 }
 
 .data-materi-status.green {
-  background-color: green;
+  background-color: #319B67;
+  ;
 }
 
 .data-materi-status.red {
-  background-color: red;
+  background-color: #C14423;
 
 }
 
 .data-materi-status.gray {
-  background-color: gray;
+  background-color: lightslategray;
 
 }
 
 .data-materi-status.blue {
-  background-color: blue;
+  background-color: #466EFC;
 
 }
 
 .data-materi-rate {
   width: 150px;
   margin-right: 25px;
+  font-size: 20px;
 }
 
 .data-materi-contact {
   width: 250px;
   background-color: #fff;
+  font-size: 20px;
 }
 
 .data-right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }

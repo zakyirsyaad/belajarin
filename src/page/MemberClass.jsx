@@ -10,6 +10,7 @@ import ButtonStyled from '../component/Elements/Button/Button';
 const MemberClass = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+
     const uid = localStorage.getItem('uid');
 
     useEffect(() => {
