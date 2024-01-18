@@ -886,7 +886,8 @@ form select {
 .header-class {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 .header-class p {

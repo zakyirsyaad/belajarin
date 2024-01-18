@@ -79,7 +79,7 @@ export default function MentorClass() {
         setSelectedCategory(null);
         setSelectedSubCategory(null);
         setSelectedSubMenu(null);
-        setFile(null);
+        setFile([]);
     };
 
     const handleFileChange = (e) => {
@@ -93,7 +93,7 @@ export default function MentorClass() {
     return (
         <div>
             <div className='header-class'>
-                <p>Courses</p>
+                <p>List Yours Courses</p>
                 {error && <p>Error: {error}</p>}
                 <ButtonStyled onClick={() => setOpen(true)}>+ Course</ButtonStyled>
                 <Modal
