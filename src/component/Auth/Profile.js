@@ -6,6 +6,8 @@ import { logout } from '../../Redux/authSlice';
 
 const Profile = () => {
     const auth = useSelector((state) => state.auth);
+    const photoURL = useSelector((state) => state.auth.photoURL);
+
     const dispatch = useDispatch();
 
     const handleLogout = () => {
@@ -30,7 +32,7 @@ const Profile = () => {
         <Space wrap>
             <Dropdown overlay={menu} placement="bottom">
                 <Space className='nav-profile'>
-                    <Avatar src={foto} alt="Profile" />
+                    <Avatar src={foto || photoURL} alt="Profile" />
                     <span>{auth.user} {nama}</span>
                     <CaretDownOutlined />
                 </Space>

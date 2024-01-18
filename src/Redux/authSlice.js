@@ -138,7 +138,7 @@ const authSlice = createSlice({
         loading: false,
         error: "",
         status: 'idle',
-        photoURL: "",
+        photoURL: '',
         uid: "",
     },
     reducers: {
@@ -198,7 +198,7 @@ const authSlice = createSlice({
                     localStorage.setItem('msg', msg);
                     localStorage.setItem('accessToken', accessToken);
                     localStorage.setItem('user', JSON.stringify(user));
-                    localStorage.setItem('Foto', JSON.stringify(photoURL));
+                    localStorage.setItem('Foto', photoURL);
                     localStorage.setItem('uid', uid);
 
                     toast.success('Successfully toasted!')
