@@ -1,6 +1,7 @@
 import React from 'react'
 import NavbarMentor from '../../component/Fragments/NavbarMentor';
 import { Outlet } from 'react-router-dom';
+import Footer from '../../component/Fragments/Footer';
 
 
 export default function IndexMentor() {
@@ -8,6 +9,7 @@ export default function IndexMentor() {
         <div className='dashboard-mentor'>
             <NavbarMentor />
             <Outlet />
+            <Footer />
         </div>
     )
 }
