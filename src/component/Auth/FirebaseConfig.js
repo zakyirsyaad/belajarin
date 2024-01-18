@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup } from 'firebase/auth';
+import { getAuth, signInWithPopup, signOut } from 'firebase/auth';
 import { FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 
@@ -75,4 +75,27 @@ export const signInWithGoogle = () => {
         .catch((error) => {
             console.error('Error during Google sign-in:', error);
         });
+};
+
+export const signOutUser = () => {
+    try {
+        signOut(auth)
+            .then(() => {
+                // Clear local storage or do any other cleanup as needed
+                localStorage.removeItem('nama');
+                localStorage.removeItem('email');
+                localStorage.removeItem('Foto');
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('uid');
+
+                // You can redirect or update the UI as needed
+                // For example, you can redirect to the login page
+                window.location.replace('/');
+            })
+            .catch((error) => {
+                console.error('Error during sign-out:', error);
+            });
+    } catch (error) {
+        console.error('Error during sign-out:', error);
+    }
 };

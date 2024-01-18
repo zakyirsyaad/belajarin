@@ -31,6 +31,7 @@ import ClassGraphicDesign from '../page/Class/GraphicDesign/ClassGraphicDesign';
 import ClassWritingTranslation from '../page/Class/WritingTranslation/ClassWritingTranslation';
 import ClassVideoAnimation from '../page/Class/VideoAnimation/ClassVideoAnimation';
 import ClassMusicVideo from '../page/Class/MusicAudio/ClassMusicVideo';
+import MemberClass from '../page/MemberClass';
 
 function IndexRoute() {
     const dispatch = useDispatch();
@@ -76,6 +77,10 @@ function IndexRoute() {
                     element={isLoggedIn ? <Navigate to='/HomeMentor/:user/:uid' /> : <MentorComLogin />}
                 />
             </Route>
+
+            <Route
+                path='/MemberClass/:uid'
+                element={isLoggedIn ? <MemberClass /> : <Navigate to='/SignWithMail/LoginMember' />} />
 
             {/* CATEGORY */}
 

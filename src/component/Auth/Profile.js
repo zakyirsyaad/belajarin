@@ -3,6 +3,8 @@ import { CaretDownOutlined, LogoutOutlined, UserOutlined, } from '@ant-design/ic
 import { Dropdown, Space, Avatar, Menu } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../Redux/authSlice';
+import { signOutUser } from './FirebaseConfig';
+import { NavLink } from 'react-router-dom';
 
 const Profile = () => {
     const auth = useSelector((state) => state.auth);
@@ -12,20 +14,27 @@ const Profile = () => {
 
     const handleLogout = () => {
         dispatch(logout());
+        signOutUser()
     };
 
     const nama = localStorage.getItem('nama');
     const foto = localStorage.getItem('Foto');
+    const uid = localStorage.getItem('uid');
 
     const menu = (
         <Menu >
             <Menu.Item key="1" icon={<UserOutlined />}>
                 Profile
             </Menu.Item>
-            <Menu.Item key="2" icon={<LogoutOutlined />} onClick={handleLogout}>
+            <Menu.Item key="2" icon={<UserOutlined />}>
+                <NavLink to={`/MemberClass/${uid}`}>
+                    Class
+                </NavLink>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<LogoutOutlined />} onClick={handleLogout}>
                 Logout
             </Menu.Item>
-        </Menu>
+        </Menu >
     );
 
     return (
